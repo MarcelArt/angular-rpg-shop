@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+interface Item {
+  name: string;
+  image: string;
+  price: number;
+  addedToCart: boolean;
+  desc: string;
+}
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'challenge1';
-  items = [
+export default class ItemListComponent {
+
+  // use this mock data
+  items: Item[] = [
     {
       name: 'Kokorowatari',
       image: 'https://i.imgur.com/POR1PVd.jpg',
@@ -65,37 +66,4 @@ export class AppComponent {
       The Dragon Slayer is the massive sword Guts has wielded as his signature weapon since surviving the Eclipse.`
     },
   ];
-  
-  total = 0;
-
-  constructor(private snackbar: MatSnackBar) {}
-
-  onAdd(item: any) {
-    console.log(item);
-    let index = this.items.indexOf(item);
-    this.items[index].addedToCart = !this.items[index].addedToCart;
-    
-    let sum = 0;
-
-    for(let i = 0; i < this.items.length; i++) {
-      if(this.items[i].addedToCart) {
-        sum += this.items[i].price;
-      }
-    }
-    this.total = sum;
-  }
-
-  onBuy() {
-    console.log('snackbar');
-    
-    if(this.total > 1000) {
-      this.snackbar.open("You don't have enough gold!", "OK", { duration: 3000});
-    }
-    else if( this.total > 0) {
-      this.snackbar.open("Transaction Success!", "OK", { duration: 3000});
-    }
-    else {
-      this.snackbar.open("Please buy something", "OK", { duration: 3000});
-    }
-  }
 }

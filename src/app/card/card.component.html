@@ -1,0 +1,30 @@
+<!-- <div class="card-container">
+  <p class="title">Kokorowatari</p>
+  <p class="subtitle">Price: 444</p>
+  <img src="https://i.imgur.com/POR1PVd.jpg" width="200" height="150"/>
+  <p>Demon sword that harms and effectively kills oddities. The sword belonged to a powerful vampire named Kiss-Shot Acerola-Orion Heart-Under-Blade.</p>
+</div> -->
+
+<mat-card class="card-container">
+  <mat-card-title>{{ item.name }}</mat-card-title>
+  <mat-card-subtitle>{{ "Price: " + item.price }}</mat-card-subtitle>
+  <div class="image">
+    <img mat-card-image class="thumb" src="{{ item.image }}" />
+  </div>
+  <mat-card-content>
+    <p>{{ item.desc }}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button *ngIf="!item.addedToCart" (click)="addCart.emit()">
+      <mat-icon>add_shopping_cart</mat-icon>Add to cart
+    </button>
+    <button
+      mat-button
+      color="primary"
+      *ngIf="item.addedToCart"
+      (click)="addCart.emit()"
+    >
+      <mat-icon>shopping_cart</mat-icon>Added to cart!
+    </button>
+  </mat-card-actions>
+</mat-card>
