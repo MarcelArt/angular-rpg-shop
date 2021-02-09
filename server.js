@@ -8,4 +8,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/dist/challenge1/index.html');
 });
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
+
+console.log(`Running on port ${process.env.PORT || 8080}`)
